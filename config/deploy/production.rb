@@ -6,6 +6,6 @@ set :admin_runner, 'ubuntu'                       # user to run the application 
 set :application_binary, '/usr/bin/node'  # application for running your app. Use coffee for coffeescript apps
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "jcoleprojectkey.pem")]
 set :node_env, 'production'
-#set :branch, 'production'
+set :branch, "master"
 set :keep_releases, 10
 server 'ec2-23-20-154-189.compute-1.amazonaws.com', :web, :app, :db, :primary => true
