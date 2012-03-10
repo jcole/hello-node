@@ -8,5 +8,4 @@ ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "jcoleprojectkey.pem")]
 set :node_env, 'production'
 #set :branch, 'production'
 set :keep_releases, 10
-
 server 'ec2-23-20-154-189.compute-1.amazonaws.com', :web, :app, :db, :primary => true

@@ -1,32 +1,53 @@
 # Hello World
 
-  Example app with node.js, express, mongoose, hogan, and coffeescript
+  Example app with node.js, express, mongoose, hogan, and coffeescript.
 
-  Uses capistrano for deploy to EC2 server.
+  Uses capistrano to deploy to an EC2 server.
+  
+  Much of the layout for this app was borrowed from:
+  https://github.com/datapimp/backbone-express-mongoose-socketio
   
 ## Setup
 
+    install node, npm, and mongodb
+    git clone git@github.com:jcole/hello-node.git
+    cd hello-node
     npm install
-    mongod --dbpath /Users/jeff/development/tools/mongo-data #replace with your path
-
+    start mongo: mongod --dbpath /path/to/your/data
+    
 ## Starting app
 
-    nodemon app.js
+Use nodemon instead of node: picks up changes to files and re-starts server
 
-## EC2
+    nodemon app.coffee
+    
+If you want to use node:
 
+    node web.js
 
+## Deploy
+
+first-time setup
+  
+    cap deploy:setup
+
+deploy
+
+    cap deploy production
+  
 ## TODO
 
-* code organizatin: models, controllers, layout
-* asset pipeline: consolidation/minification, asset digesting?  CDN?
-
 * private github repository
+* code organization: models, controllers, layout
 * mailer (w/Sendgrid?)
-* background jobs
-* Newrelic?
+
+* asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
-* testing
-* debugging?
-* Airbrake
+* monitoring and re-boot
+* Newrelic
+* Airbrake for Node
 * Google Analytics
+* delayed jobs
+
+* testing: Jasmine? expresso?
+* debugging?

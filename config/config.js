@@ -1,5 +1,10 @@
-module.exports = function(app, express, expressHogan) {
+module.exports.setup = function(o){
+  var app = o.app,
+      mongoose = o.mongoose,
+      express = o.express;
   
+  Server.paths = o.paths;
+
   // development
   app.configure('development', function() {
     app.set('db-uri', 'mongodb://localhost/hello-node');
@@ -13,25 +18,26 @@ module.exports = function(app, express, expressHogan) {
   app.configure('test', function() {
     app.set('db-uri', 'mongodb://localhost/hello-node-test');
     app.use(express.profiler());
-    //app.set('view options', { layout: 'layouts/default' });
     app.use(express.errorHandler());
   });
 
   // production
   app.configure('production', function() {
     app.set('db-uri', 'mongodb://localhost/hello-node-production');
-    //app.set('view options', { layout: 'layouts/default' });
   });
   
   // all environments
-  // order matters: these come last because loggers needs to be first
+  // order matters: these come last because loggers needs to be first  
   app.configure(function(){
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
-    app.register('.html', expressHogan);
+  	app.set('view engine','jade');
+    app.register('.html', o.expressHogan);
+    app.set('views', o.paths.views);
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    //app.use(express.compiler({ src: o.paths.root, enable: ['less'] }));
     app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
-  });  
+    app.use(express.static(o.paths.root));
+  });
+  
+  global.db = mongoose.connect(app.set('db-uri'));  
 };
