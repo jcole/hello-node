@@ -8,8 +8,6 @@ set :repository, "git@github.com:jcole/hello-node.git"
 
 set :scm, :git
 set :scm_verbose, true
-set(:scm_username) { Capistrano::CLI.ui.ask("Type is your svn username: ") }
-set(:scm_password){ Capistrano::CLI.password_prompt("Type your svn password for user #{scm_username}: ") }
 #ssh_options[:forward_agent] = true
 set :deploy_via, :remote_cache
 set :use_sudo, true

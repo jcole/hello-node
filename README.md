@@ -38,8 +38,8 @@ deploy
 ## TODO
 
 * private github repository
-* code organization: models, controllers, layout
 * mailer (w/Sendgrid?)
+* code organization: models, controllers, layout
 
 * asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
@@ -48,6 +48,7 @@ deploy
 * Airbrake for Node
 * Google Analytics
 * delayed jobs
+* load balancing
 
 * testing: Jasmine? expresso?
 * debugging?
