@@ -4,10 +4,12 @@ require 'capistrano/ext/multistage'
 
 set :application, "hello-world"
 set :node_file, "app.js"                  # this is the entry point to your app that should run as a deamon
-set :repository, "git@github.com:jcole/hello-node.git"
+set :repository, "https://github.com/jcole/hello-node.git"
 #ssh_options[:forward_agent] = true
 
 set :scm, :git
+set :scm_username, "jcole"
+set :scm_password, Proc.new { Capistrano::CLI.password_prompt("github password for #{scm_user}, please: ") } 
 set :deploy_via, :remote_cache
 set :use_sudo, true
 default_run_options[:pty] = true
