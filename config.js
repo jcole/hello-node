@@ -14,14 +14,14 @@ module.exports = function(app, express, expressHogan) {
     app.set('db-uri', 'mongodb://localhost/hello-node-test');
     app.use(express.profiler());
     app.use(express.logger({ format: 'tiny', stream: fs.createWriteStream('logs/node.log') }));
-    app.set('view options', { layout: 'layouts/default' });
+    //app.set('view options', { layout: 'layouts/default' });
     app.use(express.errorHandler());
   });
 
   // production
   app.configure('production', function() {
     app.set('db-uri', process.env.MONGOLAB_URI);
-    app.set('view options', { layout: 'layouts/default' });
+    //app.set('view options', { layout: 'layouts/default' });
   });
   
   // all environments
