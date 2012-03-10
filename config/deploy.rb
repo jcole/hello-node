@@ -3,7 +3,7 @@ set :default_stage, 'production'
 require 'capistrano/ext/multistage'
 
 set :application, "hello-world"
-set :node_file, "web.js"                  # this is the entry point to your app that should run as a deamon
+set :node_file, "app.js"                  # this is the entry point to your app that should run as a deamon
 set :repository, "https://github.com/jcole/hello-node"
 
 set :scm, :git
