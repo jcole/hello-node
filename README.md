@@ -17,12 +17,15 @@ commands
 
     git push heroku master 
     heroku config
+    heroku run node #console
 
 add-ons
 
     heroku addons:add mongolab:starter
 
 ## TODO
+
+* models, controllers, layout
 
 * mailer (w/Sendgrid?)
 * background jobs
