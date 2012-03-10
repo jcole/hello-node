@@ -13,6 +13,10 @@
 
 ## Heroku
 
+setup
+    
+    heroku config:add NODE_ENV=production
+    
 commands
 
     git push heroku master 
