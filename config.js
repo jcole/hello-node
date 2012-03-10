@@ -19,7 +19,7 @@ module.exports = function(app, express, expressHogan) {
 
   // production
   app.configure('production', function() {
-    app.set('db-uri', process.env.MONGOHQ_URL);
+    app.set('db-uri', 'mongodb://localhost/hello-node-production');
     //app.set('view options', { layout: 'layouts/default' });
   });
   

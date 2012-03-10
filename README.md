@@ -2,6 +2,8 @@
 
   Example app with node.js, express, mongoose, hogan, and coffeescript
 
+  Uses capistrano for deploy to EC2 server.
+  
 ## Setup
 
     npm install
@@ -11,31 +13,18 @@
 
     nodemon app.js
 
-## Heroku
-
-setup
-    
-    heroku config:add NODE_ENV=production
-    heroku addons:add mongolab:starter
-    heroku addons:add mongohq:free
-    
-commands
-
-    git push heroku master 
-    heroku config
-    heroku run node #console
+## EC2
 
 
 ## TODO
 
 * code organizatin: models, controllers, layout
+* asset pipeline: consolidation/minification, asset digesting?  CDN?
 
+* private github repository
 * mailer (w/Sendgrid?)
 * background jobs
-* CDN w/S3
-* asset consolidation/minification
 * Newrelic?
-
 * DNS
 * testing
 * debugging?
