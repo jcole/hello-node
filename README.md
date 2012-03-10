@@ -16,6 +16,8 @@
 setup
     
     heroku config:add NODE_ENV=production
+    heroku addons:add mongolab:starter
+    heroku addons:add mongohq:free
     
 commands
 
@@ -23,9 +25,6 @@ commands
     heroku config
     heroku run node #console
 
-add-ons
-
-    heroku addons:add mongolab:starter
 
 ## TODO
 
