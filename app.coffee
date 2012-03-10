@@ -34,6 +34,9 @@ app.get "/", (req, res) ->
   res.render "index",
     title: "Express"
 
+app.get "/foo", (req, res) ->
+  res.redirect "/"
+  
 app.get "/hogan",  (req, res) ->
   res.render "hogan.html",
     locals:
@@ -60,11 +63,12 @@ app.post '/people', (req, res) ->
         person: person
         title: 'New Person'
     else
-      res.redirect "people/#{person}"
+      res.redirect "/people/#{person.id}"
 
 app.get '/people/:id', (req, res, next) ->
   person = Person.findById req.params.id
-  res.render 'people/edit', 
+  console.log person.id
+  res.render 'people/show', 
     person: person
     title: 'Show Person'
 

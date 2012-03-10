@@ -25,7 +25,7 @@ add-ons
 
 ## TODO
 
-* models, controllers, layout
+* code organizatin: models, controllers, layout
 
 * mailer (w/Sendgrid?)
 * background jobs
@@ -35,5 +35,6 @@ add-ons
 
 * DNS
 * testing
+* debugging?
 * Airbrake
 * Google Analytics
