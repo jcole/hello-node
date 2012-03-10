@@ -4,7 +4,7 @@ require 'capistrano/ext/multistage'
 
 set :application, "hello-world"
 set :node_file, "app.js"                  # this is the entry point to your app that should run as a deamon
-set :repository, "https://github.com/jcole/hello-node"
+set :repository, "git@github.com:jcole/hello-node.git"
 
 set :scm, :git
 set :deploy_via, :remote_cache
