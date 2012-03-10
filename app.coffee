@@ -3,7 +3,6 @@ express = require("express")
 jade = require("jade")
 mongoose = require("mongoose")
 expressHogan = require("express-hogan.js")
-coffeeScript = require("coffee-script")
 
 app = module.exports = express.createServer()
 
