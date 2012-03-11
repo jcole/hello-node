@@ -31,7 +31,8 @@ module.exports.setup = function(o){
     } else {
       // EC2
       Server.port = 3000;
-      app.set('db-uri', 'mongodb://localhost/hello-node-production');
+      app.set('db-uri', ' mongodb://jcadmin:0chdyZMGqprxk6v@staff.mongohq.com:10081/hello-node-ec2'); //mongoGQ
+      //app.set('db-uri', 'mongodb://localhost/hello-node-production'); //local
     }    
 
     // cache-control for static assets
