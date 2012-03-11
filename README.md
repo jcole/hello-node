@@ -65,6 +65,7 @@ Express/framework
 
 Production-izing
 
+* 404/500 pages
 * asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
 * site monitoring, e.g. Pingdom
