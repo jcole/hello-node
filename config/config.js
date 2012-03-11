@@ -11,7 +11,7 @@ module.exports.setup = function(o){
     app.use(express.logger({ format: 'dev' }));
     app.set('view options', { pretty: true });
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    app.use(express.static(o.paths.root));
+    app.use(express.static(o.paths.root));    
   });
 
   // test
@@ -36,7 +36,36 @@ module.exports.setup = function(o){
 
     // cache-control for static assets
     var oneYear = 31557600000;
-    app.use(express.static(o.paths.root, { maxAge: oneYear }));
+    app.use(express.static(o.paths.root, { maxAge: oneYear })); 
+    
+    // error handling
+    app.use(function(req, res, next){
+      // respond with html page
+      if (req.accepts('html')) {
+        res.status(404);
+        res.render('404', { url: req.url, title: 'Page not found' });
+        return;
+      }
+
+      // respond with json
+      if (req.accepts('json')) {
+        res.send({ error: 'Not found' });
+        return;
+      }
+
+      // default to plain-text. send()
+      res.type('txt').send('Not found');
+    });
+    
+    // show this 500 page in production
+    app.use(function(err, req, res, next){
+      // we may use properties of the error object
+      // here and next(err) appropriately, or if
+      // we possibly recovered from the error, simply next().
+      res.status(err.status || 500);
+      res.render('500', { error: err, title: 'Error' });
+    });
+       
   });
   
   // all environments
@@ -45,11 +74,20 @@ module.exports.setup = function(o){
   	app.set('view engine','jade');
     app.register('.html', o.expressHogan);
     app.set('views', o.paths.views);
+    
+    // -- Parses x-www-form-urlencoded request bodies (and json)
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    //app.use(express.compiler({ src: o.paths.root, enable: ['less'] }));
-    app.use(app.router);
+
+    // -- Cookie support
+    app.use(express.cookieParser());
+
+    // -- CRSF protection middleware
+    //app.use(express.csrf());
+
+    // -- Express routing
+    app.use(app.router);    
   });
-    
+       
   global.db = mongoose.connect(app.set('db-uri'));  
 };

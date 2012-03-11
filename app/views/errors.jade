@@ -1,5 +1,0 @@
-- if (typeof(errors) !== 'undefined')
-  ul.errors
-    - each message, field in errors
-      - message = message.replace(/^Validator "|" failed for path \w+$/g, '')
-      li #{field}: #{message}

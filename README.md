@@ -80,7 +80,7 @@ EC2-specific
 
 Heroku-specific
 
-* browser caching/gzip? (covered w/Nginx on EC2)
+* browser gzip? (covered w/Nginx on EC2)
 
 General node stuff
 
