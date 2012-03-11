@@ -61,35 +61,35 @@ module.exports.setup = function(o){
   });
   
   //handle errors in production only
-  if ('production' == process.env.NODE_ENV) {
-    // error handling
-    app.use(function(req, res, next){
-      // respond with html page
-      if (req.accepts('html')) {
-        res.status(404);
-        res.render('404', { url: req.url, title: 'Page not found' });
-        return;
-      }
-
-      // respond with json
-      if (req.accepts('json')) {
-        res.send({ error: 'Not found' });
-        return;
-      }
-
-      // default to plain-text. send()
-      res.type('txt').send('Not found');
-    });
-    
-    // show this 500 page in production
-    app.use(function(err, req, res, next){
-      // we may use properties of the error object
-      // here and next(err) appropriately, or if
-      // we possibly recovered from the error, simply next().
-      res.status(err.status || 500);
-      res.render('500', { error: err, title: 'Error' });
-    });
-  }
+  // if ('production' == process.env.NODE_ENV) {
+  //   // error handling
+  //   app.use(function(req, res, next){
+  //     // respond with html page
+  //     if (req.accepts('html')) {
+  //       res.status(404);
+  //       res.render('404', { url: req.url, title: 'Page not found' });
+  //       return;
+  //     }
+  // 
+  //     // respond with json
+  //     if (req.accepts('json')) {
+  //       res.send({ error: 'Not found' });
+  //       return;
+  //     }
+  // 
+  //     // default to plain-text. send()
+  //     res.type('txt').send('Not found');
+  //   });
+  //   
+  //   // show this 500 page in production
+  //   app.use(function(err, req, res, next){
+  //     // we may use properties of the error object
+  //     // here and next(err) appropriately, or if
+  //     // we possibly recovered from the error, simply next().
+  //     res.status(err.status || 500);
+  //     res.render('500', { error: err, title: 'Error' });
+  //   });
+  // }
        
   global.db = mongoose.connect(app.set('db-uri'));  
 };
