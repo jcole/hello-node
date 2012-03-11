@@ -57,17 +57,26 @@ misc commands
 
 ## TODO
 
+General node stuff
+
+* testing: Jasmine? expresso?
+* debugging?
 * authentication
 * mailer (w/Sendgrid?)
 * caching list pages?
 * redirect to localhost?
+
+Production-izing
+
 * asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
-* monitoring and re-boot
-* Newrelic
+* site monitoring, e.g. Pingdom
+* monitoring and re-boot, e.g. monit
+* perf. monitoring, e.g. Newrelic
 * Airbrake for Node
 * Google Analytics
 * delayed jobs
+
+EC2
+
 * load balancing
-* testing: Jasmine? expresso?
-* debugging?
