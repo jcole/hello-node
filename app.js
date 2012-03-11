@@ -40,6 +40,5 @@ fs.readdirSync("app/controllers").forEach(function(file) {
 require("./routes");  
 
 // Start server
-app.listen(Server.port || process.env.PORT); //heroku
-//app.listen(Server.port || 3000); //EC2
+app.listen(Server.port || 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

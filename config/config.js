@@ -11,7 +11,6 @@ module.exports.setup = function(o){
     app.use(express.logger({ format: 'dev' }));
     app.set('view options', { pretty: true });
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    
   });
 
   // test
@@ -23,8 +22,15 @@ module.exports.setup = function(o){
 
   // production
   app.configure('production', function() {
-    app.set('db-uri', process.env.MONGOHQ_URL); //Heroku
-    //app.set('db-uri', 'mongodb://localhost/hello-node-production'); //EC2
+    if ('heroku' == process.env.DEPLOY) {
+      //Heroku
+      Server.port = process.env.PORT;
+      app.set('db-uri', process.env.MONGOHQ_URL);
+    } else {
+      // EC2
+      Server.port = 3000;
+      app.set('db-uri', 'mongodb://localhost/hello-node-production');
+    }    
   });
   
   // all environments
@@ -39,6 +45,6 @@ module.exports.setup = function(o){
     app.use(app.router);
     app.use(express.static(o.paths.root));
   });
-  
+    
   global.db = mongoose.connect(app.set('db-uri'));  
 };
