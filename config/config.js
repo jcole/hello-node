@@ -36,8 +36,32 @@ module.exports.setup = function(o){
 
     // cache-control for static assets
     var oneYear = 31557600000;
-    app.use(express.static(o.paths.root, { maxAge: oneYear })); 
+    app.use(express.static(o.paths.root, { maxAge: oneYear }));        
+  });
+  
+  // all environments
+  // order matters: these come last because loggers needs to be first  
+  app.configure(function(){
+  	app.set('view engine','jade');
+    app.register('.html', o.expressHogan);
+    app.set('views', o.paths.views);
     
+    // -- Parses x-www-form-urlencoded request bodies (and json)
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+
+    // -- Cookie support
+    app.use(express.cookieParser());
+
+    // -- CRSF protection middleware
+    //app.use(express.csrf());
+
+    // -- Express routing
+    app.use(app.router);    
+  });
+  
+  //handle errors in production only
+  if ('production' == process.env.NODE_ENV) {
     // error handling
     app.use(function(req, res, next){
       // respond with html page
@@ -65,29 +89,7 @@ module.exports.setup = function(o){
       res.status(err.status || 500);
       res.render('500', { error: err, title: 'Error' });
     });
-       
-  });
-  
-  // all environments
-  // order matters: these come last because loggers needs to be first  
-  app.configure(function(){
-  	app.set('view engine','jade');
-    app.register('.html', o.expressHogan);
-    app.set('views', o.paths.views);
-    
-    // -- Parses x-www-form-urlencoded request bodies (and json)
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-
-    // -- Cookie support
-    app.use(express.cookieParser());
-
-    // -- CRSF protection middleware
-    //app.use(express.csrf());
-
-    // -- Express routing
-    app.use(app.router);    
-  });
+  }
        
   global.db = mongoose.connect(app.set('db-uri'));  
 };
