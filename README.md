@@ -2,7 +2,8 @@
 
   Example app with node.js, express, mongoose, hogan, and coffeescript.
 
-  Uses capistrano to deploy to an EC2 server.
+  Uses capistrano to deploy to an EC2 server.  Currently deployed on:
+  http://ec2-23-20-154-189.compute-1.amazonaws.com
   
   Much of the layout for this app was borrowed from:
   https://github.com/datapimp/backbone-express-mongoose-socketio
@@ -19,12 +20,12 @@
 
 Use nodemon instead of node: picks up changes to files and re-starts server
 
-    nodemon app.coffee
+    nodemon app.js
     
-If you want to use node:
+Or, if you know you'll be making coffee changes:
 
-    node web.js
-
+    nodemon start.coffee
+    
 ## Deploy
 
 first-time setup
@@ -37,9 +38,8 @@ deploy
   
 ## TODO
 
-* private github repository
+* authentication
 * mailer (w/Sendgrid?)
-* code organization: models, controllers, layout
 
 * asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
@@ -49,6 +49,5 @@ deploy
 * Google Analytics
 * delayed jobs
 * load balancing
-
 * testing: Jasmine? expresso?
 * debugging?

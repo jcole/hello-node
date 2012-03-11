@@ -4,6 +4,8 @@ var Server = {},
     path = require("path"),
     application_root = __dirname;
 
+_ = module.exports = require('underscore');
+
 global.Server = Server;
 Server.root = application_root;
 global.app = express.createServer();

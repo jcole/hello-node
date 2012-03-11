@@ -24,14 +24,36 @@ app.post '/people', (req, res) ->
       res.redirect "/people/#{person.id}"
 
 app.get '/people/:id', (req, res, next) ->
-  person = Person.findById req.params.id
-  console.log person.id
-  res.render 'people/show', 
-    person: person
-    title: 'Show Person'
+  Person.findById req.params.id, 
+    (err, foundPerson) ->  
+      res.render 'people/show', 
+        person: foundPerson
+        title: 'Show Person'
 
 app.get '/people/:id/edit', (req, res, next) ->
-  person = Person.findById req.params.id
-  res.render 'people/edit', 
-    person: person
-    title: 'Edit Person'
+  Person.findById req.params.id, 
+    (err, foundPerson) ->  
+      console.log 'HERE'
+      res.render 'people/edit', 
+        person: foundPerson
+        title: 'Edit Person'
+        
+# update
+app.put '/people/:id', (req, res) ->
+  Person.findById req.params.id, 
+    (err, foundPerson) ->  
+      _.extend foundPerson, req.body
+      foundPerson.save (err) ->
+        return next err if err && err.name != 'ValidationError'
+        if foundPerson.errors
+          res.render '/people/edit', person: foundPerson
+        else
+          res.redirect "/people/#{foundPerson.id}"
+
+# delete
+app.delete '/people/:id', (req, res, next) ->
+  Person.findById req.params.id, 
+    (err, foundPerson) ->      
+      foundPerson.remove (err) ->
+        return next err if err
+        res.redirect '/people'

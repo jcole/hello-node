@@ -7,5 +7,6 @@
     , "mongoose": ""
     , "express-hogan.js": ""
     , "coffee-script": ""
+    , "underscore": ""
   }
 }
