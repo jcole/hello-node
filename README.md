@@ -41,6 +41,9 @@ deploy
 * authentication
 * mailer (w/Sendgrid?)
 
+* caching list pages?
+* redirect to localhost?
+
 * asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
 * monitoring and re-boot
