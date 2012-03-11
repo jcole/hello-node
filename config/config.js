@@ -11,6 +11,7 @@ module.exports.setup = function(o){
     app.use(express.logger({ format: 'dev' }));
     app.set('view options', { pretty: true });
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    app.use(express.static(o.paths.root));
   });
 
   // test
@@ -18,6 +19,7 @@ module.exports.setup = function(o){
     app.set('db-uri', 'mongodb://localhost/hello-node-test');
     app.use(express.profiler());
     app.use(express.errorHandler());
+    app.use(express.static(o.paths.root));
   });
 
   // production
@@ -31,6 +33,10 @@ module.exports.setup = function(o){
       Server.port = 3000;
       app.set('db-uri', 'mongodb://localhost/hello-node-production');
     }    
+
+    // cache-control for static assets
+    var oneYear = 31557600000;
+    app.use(express.static(o.paths.root, { maxAge: oneYear }));
   });
   
   // all environments
@@ -43,7 +49,6 @@ module.exports.setup = function(o){
     app.use(express.methodOverride());
     //app.use(express.compiler({ src: o.paths.root, enable: ['less'] }));
     app.use(app.router);
-    app.use(express.static(o.paths.root));
   });
     
   global.db = mongoose.connect(app.set('db-uri'));  

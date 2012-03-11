@@ -32,7 +32,8 @@ setup
     cap deploy:setup
 
 deploy
-
+    
+    git push origin master
     cap deploy production
   
 ## Deploy on Heroku
@@ -57,14 +58,10 @@ misc commands
 
 ## TODO
 
-General node stuff
+Express/framework
 
-* testing: Jasmine? expresso?
-* debugging?
 * authentication
 * mailer (w/Sendgrid?)
-* caching list pages?
-* redirect to localhost?
 
 Production-izing
 
@@ -77,6 +74,15 @@ Production-izing
 * Google Analytics
 * delayed jobs
 
-EC2
+EC2-specific
 
 * load balancing
+
+Heroku-specific
+
+* browser caching/gzip? (covered w/Nginx on EC2)
+
+General node stuff
+
+* testing: Jasmine? expresso?
+* debugging?
