@@ -1,5 +1,11 @@
+# Deploy with: 
+#   cap -f deploy/ec2/ec2-deploy.rb production deploy
+#   cap -f deploy/ec2/ec2-deploy.rb staging deploy
+#   etc.
+
 set :stages, %w[staging production]       # include however many stages you want here
-set :default_stage, 'production'             
+set :stage_dir, "deploy/ec2/ec2-env"
+set :default_stage, 'staging'             
 require 'capistrano/ext/multistage'
 
 set :application, "hello-world"

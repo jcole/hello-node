@@ -35,12 +35,12 @@ http://ec2-23-20-154-189.compute-1.amazonaws.com/people
 
 setup
   
-    cap deploy:setup
+    cap -f deploy/ec2/ec2-deploy.rb production deploy:setup
 
 deploy
     
     git push origin master
-    cap deploy production
+    cap -f deploy/ec2/ec2-deploy.rb production deploy
   
 ## Deploy on Heroku
 

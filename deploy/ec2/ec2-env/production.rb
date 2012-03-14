@@ -1,3 +1,5 @@
+puts "deploying to PRODUCTION"
+
 #set :host, "ec2-23-20-154-189.compute-1.amazonaws.com"                    # host your app will deploy to. List represents multiple hosts
 set :deploy_to, "/var/www/node"
 set :application_port, 3000
