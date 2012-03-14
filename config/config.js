@@ -43,9 +43,9 @@ module.exports.setup = function(o){
   // all environments
   // order matters: these come last because loggers needs to be first  
   app.configure(function(){
-  	app.set('view engine','jade');
-    app.register('.html', o.expressHogan);
     app.set('views', o.paths.views);
+    app.set('view engine','html');
+    app.register('.html', o.hulk);
     
     // -- Parses x-www-form-urlencoded request bodies (and json)
     app.use(express.bodyParser());
@@ -61,6 +61,8 @@ module.exports.setup = function(o){
     app.use(app.router);    
   });
   
+  // TODO: figure out error pages
+
   //handle errors in production only
   // if ('production' == process.env.NODE_ENV) {
   //   // error handling

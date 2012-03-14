@@ -1,0 +1,13 @@
+<h1>Edit your Profile, {{person.firstName}}</h1>
+
+<form method="post" action="/people/{{person.id}}">
+  <input type="hidden" name="_method" value="put" />
+  {{> people/form}}
+  <p><input type="submit" value="Update" /> | <a href="/people">Cancel</a></p>
+</form>
+
+<form id="delete" method="POST" action="/people/{{person.id}}">
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete" />
+</form>
+

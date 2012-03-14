@@ -1,11 +1,18 @@
-mongoose = require("mongoose")
+mongoose = require "mongoose"
+lastMod = require '../../lib/lastMod'
 
-personSchema = new mongoose.Schema
-  firstName: String
-  lastName: String
+required = (val) ->
+  val && val.length
 
-personSchema.method 'name', ->
+PersonSchema = new mongoose.Schema
+  firstName: {type: String, trim: true, validate: [required, 'Needs first name']}
+  lastName: {type: String, trim: true}
+  createdAt: {type: Date, default: Date.now}
+  
+PersonSchema.method 'name', ->
   "#{@firstName} #{@lastName}"
 
-mongoose.model 'Person', personSchema
+PersonSchema.plugin lastMod
+
+mongoose.model 'Person', PersonSchema
   

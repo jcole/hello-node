@@ -17,6 +17,12 @@
 
 Use nodemon instead of node: picks up changes to files and re-starts server
 
+Setup:
+    
+    npm install nodemon -g
+    
+To start app:
+
     nodemon app.js
     
 Or, if you know you'll be making coffee changes:
@@ -58,18 +64,18 @@ misc commands
 
 ## TODO
 
-Express/framework
-
+* resourceful routing: https://github.com/visionmedia/express-resource
+* asset pipeline: consolidation/minification, asset digesting?
+* rake task for getting assets into S3
 * authentication
 * mailer (w/Sendgrid?)
+* 404/500 pages
+* Loggly?
 
 Production-izing
 
-* 404/500 pages
-* asset pipeline: consolidation/minification, asset digesting?  CDN?
 * DNS
 * site monitoring, e.g. Pingdom
-* monitoring and re-boot, e.g. monit
 * perf. monitoring, e.g. Newrelic
 * Airbrake for Node
 * Google Analytics
@@ -77,11 +83,10 @@ Production-izing
 
 EC2-specific
 
-* load balancing
-
-Heroku-specific
-
-* browser gzip? (covered w/Nginx on EC2)
+* elastic IP routing
+* load-balancing
+* logging
+* monitoring and re-boot, e.g. monit
 
 General node stuff
 

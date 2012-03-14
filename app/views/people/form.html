@@ -1,0 +1,12 @@
+{{#errors}}
+  <ul class="errors">
+    <li>{{field}}: {{message}}</li>
+  </ul>
+{{/errors}}
+
+<label for="firstName"> First name<label>
+<input type="text" name="firstName" id="firstName" value="{{person.firstName}}">
+
+<label for="lastName"> Last name<label>
+<input type="text" name="lastName" id="lastName" value="{{person.lastName}}">
+

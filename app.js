@@ -15,14 +15,15 @@ Server.setup = require("./config/config.js").setup({
   app: app, 
   mongoose : require("mongoose"),
   express : express,
-  expressHogan : require("express-hogan.js"),
+  //expressHogan : require("express-hogan.js"),
+  hulk : require("hulk-hogan"),
   jade : require("jade"),
   paths : {
     views :  path.join(application_root,"app","views"),
     root : path.join(application_root,"public"),
     controllers : path.join(application_root,"app","controllers"),
     models : path.join(application_root,"app","models")
-  }
+  },
 });
 
 // Models
