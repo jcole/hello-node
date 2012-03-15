@@ -15,7 +15,7 @@ global.app = express.createServer();
 
 var application_root = __dirname,
     path_lib = path.join(application_root,"lib"),
-    path_routes = path.join(application_root,"app","routes.js"),
+    path_routes = path.join(application_root,"app","routes"),
     path_views =  path.join(application_root,"app","views"),
     path_root = path.join(application_root,"public"),
     path_controllers = path.join(application_root,"app","controllers"),
@@ -80,6 +80,20 @@ app.configure(function(){
 
 // TODO: figure out error pages
 
+// app.get('/404', function(req, res, next){
+//   next();
+// });
+// 
+// app.get('/403', function(req, res, next){
+//   var err = new Error('not allowed!');
+//   err.status = 403;
+//   next(err);
+// });
+// 
+// app.get('/500', function(req, res, next){
+//   next(new Error('keyboard cat!'));
+// });
+
 //handle errors in production only
 // if ('production' == process.env.NODE_ENV) {
 //   // error handling
@@ -113,7 +127,7 @@ app.configure(function(){
      
 mongoose.connect(app.set('db-uri'));
 
-// Todo: auto-include libs?
+// TODO: auto-include libs?
 // fs.readdirSync(path_lib).forEach(function(file) {
 //   require(path_lib + "/" + file);
 // });

@@ -64,29 +64,34 @@ misc commands
 
 ## TODO
 
+* error pages
 * resourceful routing: https://github.com/visionmedia/express-resource
-* asset pipeline: consolidation/minification, asset digesting?
 * rake task for getting assets into S3
+* asset pipeline: consolidation/minification, asset digesting?
+
 * authentication
 * mailer (w/Sendgrid?)
-* 404/500 pages
-* Loggly?
+* delayed jobs
 
 Production-izing
 
 * DNS
 * site monitoring, e.g. Pingdom
-* perf. monitoring, e.g. Newrelic
-* Airbrake for Node
+* performance metrics, e.g. Newrelic
+* exception monitoring: Airbrake?
 * Google Analytics
-* delayed jobs
 
 EC2-specific
 
 * elastic IP routing
 * load-balancing
 * logging
-* monitoring and re-boot, e.g. monit
+* process monitoring and re-boot, e.g. monit
+
+Heroku-specific
+
+* logging: Loggly?  syslog drain?
+* cron jobs
 
 General node stuff
 
